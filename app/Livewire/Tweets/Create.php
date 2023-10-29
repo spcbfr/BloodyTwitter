@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Livewire\Tweets;
-
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -12,8 +10,11 @@ class Create extends Component
 
     public function store()
     {
-        $this->validate();
+        $validated = $this->validate();
 
+        auth()->user()->tweets()->create($validated);
+
+        $this->message = '';
     }
 
     public function render()
