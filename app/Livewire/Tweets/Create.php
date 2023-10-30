@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tweets;
 
+use Auth;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -14,9 +15,10 @@ class Create extends Component
     {
         $validated = $this->validate();
 
-        auth()->user()->tweets()->create($validated);
+        Auth::user()->tweets()->create($validated);
 
         $this->message = '';
+
         $this->dispatch('tweet-created');
     }
 
