@@ -15,6 +15,7 @@ use Tests\TestCase;
 */
 
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+// This refreshes the database after every test, effectivly deleting everything in it
 
 /*
 |--------------------------------------------------------------------------

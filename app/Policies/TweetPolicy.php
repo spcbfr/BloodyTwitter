@@ -4,7 +4,8 @@ namespace App\Policies;
 
 use App\Models\Tweet;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+
+use function Pest\Laravel\delete;
 
 class TweetPolicy
 {
@@ -37,7 +38,8 @@ class TweetPolicy
      */
     public function update(User $user, Tweet $tweet): bool
     {
-        //
+        // Every user who can delete a given tweet can also modify it
+        return $this->delete($user, $tweet);
     }
 
     /**
@@ -45,7 +47,7 @@ class TweetPolicy
      */
     public function delete(User $user, Tweet $tweet): bool
     {
-        //
+        return $tweet->user()->is($user);
     }
 
     /**
