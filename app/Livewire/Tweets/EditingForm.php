@@ -3,6 +3,7 @@
 namespace App\Livewire\Tweets;
 
 use App\Models\Tweet;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -10,6 +11,7 @@ class EditingForm extends Component
 {
     // this tweetID is passed into
     // the component when it's rendered
+    #[Locked]
     public string $tweetID;
 
     public Tweet $tweet;

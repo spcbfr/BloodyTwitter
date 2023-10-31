@@ -10,8 +10,8 @@ use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component {
-    #[Rule(['required', 'string', 'email'])]
-    public string $email = '';
+    #[Rule(['required', 'string'])]
+    public string $username = '';
 
     #[Rule(['required', 'string'])]
     public string $password = '';
@@ -25,11 +25,11 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $this->ensureIsNotRateLimited();
 
-        if (!auth()->attempt($this->only(['email', 'password'], $this->remember))) {
+        if (!auth()->attempt($this->only(['username', 'password'], $this->remember))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'username' => trans('auth.failed'),
             ]);
         }
 
@@ -51,7 +51,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'username' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -60,7 +60,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+        return Str::transliterate(Str::lower($this->username) . '|' . request()->ip());
     }
 }; ?>
 
@@ -71,10 +71,10 @@ new #[Layout('layouts.guest')] class extends Component {
     <form wire:submit="login">
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required
-                autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input wire:model="username" id="username" class="block mt-1 w-full" type="text" name="username"
+                required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Password -->

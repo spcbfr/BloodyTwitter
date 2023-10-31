@@ -18,6 +18,8 @@
                         <div>
 
                             <span class="text-gray-800">{{ $tweet->user->name }}</span>
+                            <span class="text-gray-600">@</span><span
+                                class="text-gray-600">{{ $tweet->user->username }}</span>
 
                             <small
                                 class="ml-2 text-sm text-gray-600">{{ $tweet->created_at->format('j M Y, g:i a') }}</small>
