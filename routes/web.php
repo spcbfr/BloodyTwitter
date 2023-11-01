@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Tweets;
+use App\Livewire\UserPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,8 @@ Route::get('tweets', Tweets::class)
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+Route::get('u/{user:username}', UserPage::class)
+    ->middleware(['auth', 'verified'])
+    ->name('userpage');
 
 require __DIR__.'/auth.php';
