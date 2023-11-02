@@ -15,7 +15,7 @@ class UserPage extends Component
      * Here I am utilizing implicit model binding
      * to pass the user model directly from the
      * route to the controller. learn more on
-     * the Laravel Docs
+     * the Laravel Docs.
      *
      * @see https://laravel.com/docs/10.x/routing#route-model-binding
      */

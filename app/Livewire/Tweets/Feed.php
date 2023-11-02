@@ -41,6 +41,11 @@ class Feed extends Component
         $this->editing = null;
     }
 
+    public function goto_userpage($user)
+    {
+        return redirect(url("/u/{$user}"));
+    }
+
     public function render()
     {
         return view('livewire.tweets.feed');

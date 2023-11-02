@@ -18,8 +18,8 @@
                         <div>
 
                             <span class="text-gray-800">{{ $tweet->user->name }}</span>
-                            <span class="text-gray-600">@</span><span
-                                class="text-gray-600">{{ $tweet->user->username }}</span>
+                            <a wire:click="goto_userpage('{{ $tweet->user->username }}')"
+                                class="text-gray-600 cursor-pointer underline"><span>@</span>{{ $tweet->user->username }}</a>
 
                             <small
                                 class="ml-2 text-sm text-gray-600">{{ $tweet->created_at->format('j M Y, g:i a') }}</small>
