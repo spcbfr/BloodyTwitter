@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Tweets;
+use App\Livewire\Home;
 use App\Livewire\UserPage;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +21,9 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('tweets', Tweets::class)
+Route::get('tweets', Home::class)
     ->middleware(['auth', 'verified'])
-    ->name('tweets');
+    ->name('home');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

@@ -15,7 +15,7 @@ class Feed extends Component
 
     public function mount()
     {
-        $this->fetchTweets();
+        $this->fetch();
     }
 
     public function editTweet($tweet)
@@ -23,27 +23,22 @@ class Feed extends Component
         $this->editing = $tweet;
     }
 
-    public function deleteTweet(Tweet $tweet)
+    public function delete(Tweet $tweet)
     {
         $this->authorize('delete', $tweet);
 
         $tweet->delete();
 
-        $this->fetchTweets();
+        $this->fetch();
     }
 
     #[On('tweet-created')]
     #[On('edit-cancelled')]
     #[On('tweet-edited')]
-    public function fetchTweets()
+    public function fetch()
     {
         $this->tweets = Tweet::with('user')->get();
         $this->editing = null;
-    }
-
-    public function goto_userpage($user)
-    {
-        return redirect(url("/u/{$user}"));
     }
 
     public function render()

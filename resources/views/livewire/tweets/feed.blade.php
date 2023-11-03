@@ -17,9 +17,8 @@
 
                         <div>
 
-                            <span class="text-gray-800">{{ $tweet->user->name }}</span>
-                            <a wire:click="goto_userpage('{{ $tweet->user->username }}')"
-                                class="text-gray-600 cursor-pointer underline"><span>@</span>{{ $tweet->user->username }}</a>
+                            <a wire:navigate href="{{ route('userpage', ['user' => $tweet->user]) }}"
+                                class="text-gray-600 cursor-pointer underline">u/{{ $tweet->user->username }}</a>
 
                             <small
                                 class="ml-2 text-sm text-gray-600">{{ $tweet->created_at->format('j M Y, g:i a') }}</small>
