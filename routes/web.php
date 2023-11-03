@@ -21,7 +21,7 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('tweets', Home::class)
+Route::get('home', Home::class)
     ->middleware(['auth', 'verified'])
     ->name('home');
 

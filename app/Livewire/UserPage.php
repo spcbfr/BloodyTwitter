@@ -27,5 +27,6 @@ class UserPage extends Component
     public function render()
     {
         return view('livewire.user-page');
+
     }
 }
