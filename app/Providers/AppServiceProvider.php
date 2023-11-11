@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -20,10 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Password::defaults(function () {
-            $rule = Password::min(8);
+        Password::defaults(fn() => Password::min(8)->uncompromised());
 
-            return $rule->uncompromised();
-        });
+        if (!App::isProduction()) {
+
+            Model::shouldBeStrict();
+        }
     }
 }
