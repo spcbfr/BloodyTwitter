@@ -6,6 +6,6 @@ In this repo I also add a lot of personal touch and new features such as:
 
 - Authentication with username instead of email.
 - a User page
-- like functionality (coming soon)
+- like functionality
 - follow functionality (coming soon)
 - in-app notifications (coming soon)
