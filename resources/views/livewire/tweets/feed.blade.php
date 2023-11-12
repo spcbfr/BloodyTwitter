@@ -1,6 +1,6 @@
 <div class="divide-y">
     @foreach ($tweets->sortByDesc('created_at') as $tweet)
-        <div class="px-6 pt-6 pb-2 flex space-x-2" wire:key="{{ $tweet->id }}">
+        <div class="px-6 pt-6 pb-4 flex space-x-2" wire:key="{{ $tweet->id }}">
 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -33,7 +33,7 @@
                 @if ($tweet->id == $editing)
                     <livewire:tweets.editing-form :tweetID="$editing" />
                 @else
-                    <p class="mt-4 mb-2 text-lg text-gray-900">{{ $tweet->message }}</p>
+                    <p class="mt-2 mb-2 text-lg text-gray-900">{{ $tweet->message }}</p>
                 @endif
                 <div class="flex gap-2">
 

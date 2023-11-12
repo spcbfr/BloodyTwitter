@@ -29,6 +29,8 @@ class Feed extends Component
     {
         $tweet->likes()->toggle(Auth::user()->id);
         $this->fetch();
+
+        $this->dispatch('refresh-callout');
     }
 
     public function mount(): void

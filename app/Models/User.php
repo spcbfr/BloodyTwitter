@@ -14,6 +14,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $withCount = ['likes'];
+
+    public function tweets(): HasMany
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(Tweet::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,14 +58,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function tweets(): HasMany
-    {
-        return $this->hasMany(Tweet::class);
-    }
-
-    public function likes(): BelongsToMany
-    {
-        return $this->belongsToMany(Tweet::class);
-    }
 }
