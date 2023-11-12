@@ -40,7 +40,7 @@
 
                     <button wire:click='toggleLike({{ $tweet }})'
                         class="flex px-2 py-1 rounded-lg gap-1 align-baseline bg-gray-200"
-                        :class="{{ $tweet->likes->contains(Auth::user()->id) }} && '!bg-slate-800 text-gray-1001'">
+                        :class="{{ $tweet->likes->contains(Auth::user()->id) }} && '!bg-slate-800 text-gray-100'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             :class="{{ $tweet->likes->contains(Auth::user()->id) }} && 'fill-gray-200'"
                             viewBox="0 0 256 256">
