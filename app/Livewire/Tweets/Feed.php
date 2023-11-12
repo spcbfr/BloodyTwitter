@@ -4,10 +4,13 @@ namespace App\Livewire\Tweets;
 
 use App\Models\Tweet;
 use App\Models\User;
+use Auth;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Route;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Route;
 
 class Feed extends Component
 {
@@ -16,24 +19,30 @@ class Feed extends Component
     // if this user is supplied,
     // render their feed instead
     // of the generic home feed
-    public ?User $user = null;
+    public ?User $userToShowFeedFor = null;
 
     public $editing = null;
 
     public string $currentRoute;
 
-    public function mount()
+    public function toggleLike(Tweet $tweet)
+    {
+        $tweet->likes()->toggle(Auth::user()->id);
+        $this->fetch();
+    }
+
+    public function mount(): void
     {
         $this->currentRoute = Route::currentRouteName();
         $this->fetch();
     }
 
-    public function editTweet($tweet)
+    public function editTweet(mixed $tweet): void
     {
         $this->editing = $tweet;
     }
 
-    public function delete(Tweet $tweet)
+    public function delete(Tweet $tweet): void
     {
         $this->authorize('delete', $tweet);
 
@@ -45,17 +54,17 @@ class Feed extends Component
     #[On('tweet-created')]
     #[On('edit-cancelled')]
     #[On('tweet-edited')]
-    public function fetch()
+    public function fetch(): void
     {
-        if ($this->user == null) {
-            $this->tweets = Tweet::with('user')->get();
+        if ($this->userToShowFeedFor == null) {
+            $this->tweets = Tweet::with('user')->withCount('likes')->get();
         } else {
-            $this->tweets = $this->user->tweets;
+            $this->tweets = $this->userToShowFeedFor->tweets;
         }
         $this->editing = null;
     }
 
-    public function render()
+    public function render(): View|Factory
     {
         return view('livewire.tweets.feed');
     }

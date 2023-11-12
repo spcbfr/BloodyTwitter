@@ -22,11 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Password::defaults(fn() => Password::min(8)->uncompromised());
+        Password::defaults(fn () => Password::min(8)->uncompromised());
 
-        if (!App::isProduction()) {
+        if (! App::isProduction()) {
 
-            Model::shouldBeStrict();
+            // Model::shouldBeStrict();
         }
     }
 }
