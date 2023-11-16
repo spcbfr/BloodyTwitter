@@ -3,6 +3,8 @@
 namespace App\Livewire\Tweets;
 
 use Auth;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -11,7 +13,7 @@ class Create extends Component
     #[Rule('required|max:300')]
     public $message = '';
 
-    public function store()
+    public function store(): void
     {
         $validated = $this->validate();
 
@@ -22,7 +24,7 @@ class Create extends Component
         $this->dispatch('tweet-created');
     }
 
-    public function render()
+    public function render(): View|Factory
     {
         return view('livewire.tweets.create');
     }

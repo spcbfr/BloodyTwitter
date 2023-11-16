@@ -36,8 +36,6 @@
                     <p class="mt-2 mb-2 text-lg text-gray-900">{{ $tweet->message }}</p>
                 @endif
                 <div class="flex gap-2">
-
-
                     <button wire:click='toggleLike({{ $tweet }})'
                         class="flex px-2 py-1 rounded-lg gap-1 align-baseline bg-gray-200"
                         :class="{{ $tweet->likes->contains(Auth::user()->id) }} && '!bg-slate-800 text-gray-100'">
@@ -58,8 +56,6 @@
                         {{ $tweet->likes_count }} {{ Illuminate\Support\Str::plural('like', $tweet->likes_count) }}
 
                     </button>
-
-
                 </div>
             </div>
             @if ($tweet->user->is(Auth::user()))

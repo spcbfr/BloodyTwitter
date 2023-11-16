@@ -1,11 +1,40 @@
-Initially I followed the laravel bootcamp to create chirper, a basic twitter clone.
+A few weeks ago (as of november 2023) I went through the Laravel Bootcamp to build a simple twitter clone, I loved it so much that I decided to remake it on my own fully unguided. in the process I added a bunch of features:
 
-I later decided I was proficient enough to redo the tutorial, this time unguided, and this is what this repo is about.
+- Like functionality
+- A profile page
+- Authentication with username instead of email
+- in-app notifications **(coming soon!)**
 
-In this repo I also add a lot of personal touch and new features such as:
+## How to use
 
-- Authentication with username instead of email.
-- a User page
-- like functionality
-- follow functionality (coming soon)
-- in-app notifications (coming soon)
+Clone the repo
+
+```bash
+git clone https://github.com/spcbfr/BloodyTwitter.git
+
+cd BloodyTwitter
+```
+
+Install [composer](https://getcomposer.org/download/) if you don't have it already, next install PHP dependencies.
+
+```bash
+composer install
+```
+
+laravel uses vite for HMR on the frontend, so go ahead and install the JS dependencies too.
+
+```bash
+npm install
+```
+
+run the following command so that vite can generate our assets
+
+```bash
+npm run dev
+```
+
+Finally, open the `artisan` development server, you're all set now
+
+```bash
+php artisan serve
+```

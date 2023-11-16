@@ -25,7 +25,7 @@ class Feed extends Component
 
     public string $currentRoute;
 
-    public function toggleLike(Tweet $tweet)
+    public function toggleLike(Tweet $tweet): void
     {
         $tweet->likes()->toggle(Auth::user()->id);
         $this->fetch();
@@ -59,7 +59,7 @@ class Feed extends Component
     public function fetch(): void
     {
         if ($this->userToShowFeedFor == null) {
-            $this->tweets = Tweet::with('user')->withCount('likes')->get();
+            $this->tweets = Tweet::with('user')->get();
         } else {
             $this->tweets = $this->userToShowFeedFor->tweets;
         }
