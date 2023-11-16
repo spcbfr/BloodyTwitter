@@ -30,11 +30,20 @@ laravel uses vite for HMR on the frontend, so go ahead and install the JS depend
 npm install
 ```
 
+
+Laravel has built-in migrations, to execute these migrations, first create the environment variable by copying the provided `.env.example` then run the laravel migrate command. note that the migrate command will create a new sqlite database in `BloodyTwitter/database/database.sqlite` if everything is done correctly.
+```bash
+cp .env.example .env
+
+php artisan migrate
+```
+
 run the following command so that vite can generate our assets
 
 ```bash
 npm run dev
 ```
+
 
 Finally, open the `artisan` development server, you're all set now
 
