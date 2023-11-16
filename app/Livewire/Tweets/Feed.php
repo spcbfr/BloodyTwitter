@@ -59,7 +59,7 @@ class Feed extends Component
     public function fetch(): void
     {
         if ($this->userToShowFeedFor == null) {
-            $this->tweets = Tweet::with('user')->get();
+            $this->tweets = Tweet::with('user')->withCount('likes')->get();
         } else {
             $this->tweets = $this->userToShowFeedFor->tweets;
         }
