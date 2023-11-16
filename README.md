@@ -1,3 +1,6 @@
+# Bloody Twitter!
+![image](https://github.com/spcbfr/BloodyTwitter/assets/77839865/5c1cecab-7ad2-4ddb-8284-ffaa0b2b6c26)
+
 A few weeks ago (as of november 2023) I went through the Laravel Bootcamp to build a simple twitter clone, I loved it so much that I decided to remake it on my own fully unguided. in the process I added a bunch of features:
 
 - Like functionality
